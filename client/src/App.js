@@ -4,13 +4,16 @@ import Rooms from "./pages/rooms";
 import Nav from "./components/Nav/Nav";
 import RoomDetails from "./pages/room_details";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   return (
-    <div className="flex h-screen bg-gray-200">
+    <div className="flex h-screen">
       <Router>
         <Nav />
 
-        <div className="flex-1 flex flex-col overflow-hidden mx-auto px-6 py-8">
+        <div className="flex-1 flex flex-col overflow-hidden mx-auto">
           <Switch>
             <Route path="/" component={Home} exact />
 
@@ -26,6 +29,7 @@ const App = () => {
           </Switch>
         </div>
       </Router>
+      <ToastContainer />
     </div>
   );
 };

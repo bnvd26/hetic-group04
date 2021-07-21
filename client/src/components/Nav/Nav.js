@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 
-
 const Nav = () => {
   const routes = [
     {
@@ -19,7 +18,7 @@ const Nav = () => {
   ];
 
   return (
-    <div className="z-30 inset-y-0 left-0 w-32 transform bg-white overflow-y-auto">
+    <div className="z-30 inset-y-0 left-0 w-32 transform bg-white overflow-y-auto shadow">
       <div className="flex items-center justify-center mt-8">
         <div className="flex items-center">
           <NavLink
