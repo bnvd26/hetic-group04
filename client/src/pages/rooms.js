@@ -2,9 +2,7 @@ import React from "react";
 
 const Rooms = () => {
   return (
-    <div>
-      <h1>Test route salle</h1>
-    </div>
+    <h1 className="text-gray-700 text-3xl font-medium">Test route salle</h1>
   );
 };
 
