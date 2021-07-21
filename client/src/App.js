@@ -10,8 +10,8 @@ const App = () => {
       <Router>
         <Nav />
 
-        <Switch>
-          <div className="flex-1 flex flex-col overflow-hidden mx-auto px-6 py-8">
+        <div className="flex-1 flex flex-col overflow-hidden mx-auto px-6 py-8">
+          <Switch>
             <Route path="/" component={Home} exact />
 
             <Route
@@ -23,8 +23,8 @@ const App = () => {
                 </>
               )}
             />
-          </div>
-        </Switch>
+          </Switch>
+        </div>
       </Router>
     </div>
   );

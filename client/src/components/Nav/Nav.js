@@ -38,6 +38,7 @@ const Nav = () => {
             className="flex items-center justify-center mt-4 py-4 px-4 text-gray-400 w-full"
             activeClassName="text-indigo-500 border-solid border-r-4 border-light-blue-500"
             to={route.url}
+            key={index}
           >
             <FontAwesomeIcon icon={route.icon} className="text-lg" />
             {/* <span className="mx-3">{route.label}</span> */}
