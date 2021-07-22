@@ -1,9 +1,9 @@
-client/node_modules
-server/vendor
+/client/node_modules
+/server/vendor
 /public/hot
 /public/storage
 /storage/*.key
-server/.vagrant
+/server/.vagrant
 .env
 .env.backup
 .phpunit.result.cache
