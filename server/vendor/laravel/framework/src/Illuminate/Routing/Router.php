@@ -787,7 +787,10 @@ class Router implements BindingRegistrar, RegistrarContract
                     $response instanceof Jsonable ||
                     $response instanceof ArrayObject ||
                     $response instanceof JsonSerializable ||
+<<<<<<< HEAD
                     $response instanceof \stdClass ||
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
                     is_array($response))) {
             $response = new JsonResponse($response);
         } elseif (! $response instanceof SymfonyResponse) {

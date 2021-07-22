@@ -407,7 +407,10 @@ class Builder
     /**
      * Force the query to only return distinct results.
      *
+<<<<<<< HEAD
      * @param  mixed  ...$distinct
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * @return $this
      */
     public function distinct()
@@ -2405,7 +2408,11 @@ class Builder
      * @param  int|null  $perPage
      * @param  array  $columns
      * @param  string  $cursorName
+<<<<<<< HEAD
      * @param  \Illuminate\Pagination\Cursor|string|null  $cursor
+=======
+     * @param  string|null  $cursor
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * @return \Illuminate\Contracts\Pagination\CursorPaginator
      */
     public function cursorPaginate($perPage = 15, $columns = ['*'], $cursorName = 'cursor', $cursor = null)

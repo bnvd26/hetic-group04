@@ -8,7 +8,11 @@ class TCNo
 {
     /**
      * Generates Turkish Identity Number Checksum
+<<<<<<< HEAD
      * Gets first 9 digit as prefix and calculates checksum
+=======
+     * Gets first 9 digit as prefix and calcuates checksums
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      *
      * https://en.wikipedia.org/wiki/Turkish_Identification_Number
      *
@@ -40,7 +44,11 @@ class TCNo
     }
 
     /**
+<<<<<<< HEAD
      * Checks whether a TCNo has a valid checksum
+=======
+     * Checks whether an TCNo has a valid checksum
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      *
      * @param string $tcNo
      * @return boolean

@@ -19,7 +19,11 @@ use Illuminate\Support\Testing\Fakes\EventFake;
  * @method static void flush(string $event)
  * @method static void forget(string $event)
  * @method static void forgetPushed()
+<<<<<<< HEAD
  * @method static void listen(\Closure|string|array $events, \Closure|string|array $listener = null)
+=======
+ * @method static void listen(\Closure|string|array $events, \Closure|string $listener = null)
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
  * @method static void push(string $event, array $payload = [])
  * @method static void subscribe(object|string $subscriber)
  *

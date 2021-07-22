@@ -494,6 +494,7 @@ class Arr
     }
 
     /**
+<<<<<<< HEAD
      * Convert the array into a query string.
      *
      * @param  array  $array
@@ -505,6 +506,8 @@ class Arr
     }
 
     /**
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * Get one or a specified number of random values from an array.
      *
      * @param  array  $array
@@ -653,11 +656,16 @@ class Arr
     }
 
     /**
+<<<<<<< HEAD
      * Conditionally compile classes from an array into a CSS class list.
+=======
+     * Convert the array into a query string.
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      *
      * @param  array  $array
      * @return string
      */
+<<<<<<< HEAD
     public static function toCssClasses($array)
     {
         $classList = static::wrap($array);
@@ -673,6 +681,11 @@ class Arr
         }
 
         return implode(' ', $classes);
+=======
+    public static function query($array)
+    {
+        return http_build_query($array, '', '&', PHP_QUERY_RFC3986);
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**

@@ -212,6 +212,7 @@ class Filesystem
     }
 
     /**
+<<<<<<< HEAD
      * Replace a given string within a given file.
      *
      * @param  array|string  $search
@@ -225,6 +226,8 @@ class Filesystem
     }
 
     /**
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * Prepend to a file.
      *
      * @param  string  $path

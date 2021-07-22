@@ -8,7 +8,10 @@ use Exception;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+<<<<<<< HEAD
 use Illuminate\Http\Resources\Json\JsonResource;
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -198,10 +201,13 @@ abstract class AbstractCursorPaginator implements Htmlable
         return collect($this->parameters)
             ->flip()
             ->map(function ($_, $parameterName) use ($item) {
+<<<<<<< HEAD
                 if ($item instanceof JsonResource) {
                     $item = $item->resource;
                 }
 
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
                 if ($item instanceof Model &&
                     ! is_null($parameter = $this->getPivotParameterForItem($item, $parameterName))) {
                     return $parameter;

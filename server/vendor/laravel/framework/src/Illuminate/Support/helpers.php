@@ -216,7 +216,11 @@ if (! function_exists('retry')) {
      *
      * @param  int  $times
      * @param  callable  $callback
+<<<<<<< HEAD
      * @param  int|\Closure  $sleepMilliseconds
+=======
+     * @param  int  $sleepMilliseconds
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * @param  callable|null  $when
      * @return mixed
      *
@@ -238,7 +242,11 @@ if (! function_exists('retry')) {
             }
 
             if ($sleepMilliseconds) {
+<<<<<<< HEAD
                 usleep(value($sleepMilliseconds, $attempts) * 1000);
+=======
+                usleep($sleepMilliseconds * 1000);
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
             }
 
             goto beginning;

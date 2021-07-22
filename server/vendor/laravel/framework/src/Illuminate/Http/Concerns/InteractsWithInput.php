@@ -112,19 +112,28 @@ trait InteractsWithInput
      *
      * @param  string  $key
      * @param  callable  $callback
+<<<<<<< HEAD
      * @param  callable|null  $default
      * @return $this|mixed
      */
     public function whenHas($key, callable $callback, callable $default = null)
+=======
+     * @return $this|mixed
+     */
+    public function whenHas($key, callable $callback)
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     {
         if ($this->has($key)) {
             return $callback(data_get($this->all(), $key)) ?: $this;
         }
 
+<<<<<<< HEAD
         if ($default) {
             return $default();
         }
 
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
         return $this;
     }
 
@@ -190,19 +199,28 @@ trait InteractsWithInput
      *
      * @param  string  $key
      * @param  callable  $callback
+<<<<<<< HEAD
      * @param  callable|null  $default
      * @return $this|mixed
      */
     public function whenFilled($key, callable $callback, callable $default = null)
+=======
+     * @return $this|mixed
+     */
+    public function whenFilled($key, callable $callback)
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     {
         if ($this->filled($key)) {
             return $callback(data_get($this->all(), $key)) ?: $this;
         }
 
+<<<<<<< HEAD
         if ($default) {
             return $default();
         }
 
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
         return $this;
     }
 

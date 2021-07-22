@@ -37,8 +37,11 @@ namespace Faker;
  * @property string $phoneNumber
  * @property string $e164PhoneNumber
  *
+<<<<<<< HEAD
  * @property string $catchPhrase
  * @property string $bs
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
  * @property string $company
  * @property string $companySuffix
  * @property string $jobTitle

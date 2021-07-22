@@ -6,7 +6,10 @@ use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\MultipleRecordsFoundException;
 use Illuminate\Database\RecordsNotFoundException;
+<<<<<<< HEAD
 use Illuminate\Pagination\Cursor;
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -289,16 +292,24 @@ trait BuildsQueries
      * @param  int  $perPage
      * @param  array  $columns
      * @param  string  $cursorName
+<<<<<<< HEAD
      * @param  \Illuminate\Pagination\Cursor|string|null  $cursor
+=======
+     * @param  string|null  $cursor
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * @return \Illuminate\Contracts\Pagination\CursorPaginator
      */
     protected function paginateUsingCursor($perPage, $columns = ['*'], $cursorName = 'cursor', $cursor = null)
     {
+<<<<<<< HEAD
         if (! $cursor instanceof Cursor) {
             $cursor = is_string($cursor)
                 ? Cursor::fromEncoded($cursor)
                 : CursorPaginator::resolveCurrentCursor($cursorName, $cursor);
         }
+=======
+        $cursor = $cursor ?: CursorPaginator::resolveCurrentCursor($cursorName);
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 
         $orders = $this->ensureOrderForCursorPagination(! is_null($cursor) && $cursor->pointsToPreviousItems());
 

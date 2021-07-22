@@ -153,6 +153,7 @@ class PreventRequestsDuringMaintenance
 
         return $headers;
     }
+<<<<<<< HEAD
 
     /**
      * Get the URIs that should be accessible even when maintenance mode is enabled.
@@ -163,4 +164,6 @@ class PreventRequestsDuringMaintenance
     {
         return $this->except;
     }
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 }

@@ -682,7 +682,11 @@ class Connection implements ConnectionInterface
         // run the SQL against the PDO connection. Then we can calculate the time it
         // took to execute and log the query SQL, bindings and time in our memory.
         try {
+<<<<<<< HEAD
             return $callback($query, $bindings);
+=======
+            $result = $callback($query, $bindings);
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
         }
 
         // If an exception occurs when attempting to run a query, we'll format the error
@@ -693,6 +697,11 @@ class Connection implements ConnectionInterface
                 $query, $this->prepareBindings($bindings), $e
             );
         }
+<<<<<<< HEAD
+=======
+
+        return $result;
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**

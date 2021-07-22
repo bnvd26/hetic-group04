@@ -12,9 +12,15 @@ trait Dispatchable
      *
      * @return \Illuminate\Foundation\Bus\PendingDispatch
      */
+<<<<<<< HEAD
     public static function dispatch(...$arguments)
     {
         return new PendingDispatch(new static(...$arguments));
+=======
+    public static function dispatch()
+    {
+        return new PendingDispatch(new static(...func_get_args()));
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -52,9 +58,15 @@ trait Dispatchable
      *
      * @return mixed
      */
+<<<<<<< HEAD
     public static function dispatchSync(...$arguments)
     {
         return app(Dispatcher::class)->dispatchSync(new static(...$arguments));
+=======
+    public static function dispatchSync()
+    {
+        return app(Dispatcher::class)->dispatchSync(new static(...func_get_args()));
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -64,9 +76,15 @@ trait Dispatchable
      *
      * @deprecated Will be removed in a future Laravel version.
      */
+<<<<<<< HEAD
     public static function dispatchNow(...$arguments)
     {
         return app(Dispatcher::class)->dispatchNow(new static(...$arguments));
+=======
+    public static function dispatchNow()
+    {
+        return app(Dispatcher::class)->dispatchNow(new static(...func_get_args()));
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -74,9 +92,15 @@ trait Dispatchable
      *
      * @return mixed
      */
+<<<<<<< HEAD
     public static function dispatchAfterResponse(...$arguments)
     {
         return app(Dispatcher::class)->dispatchAfterResponse(new static(...$arguments));
+=======
+    public static function dispatchAfterResponse()
+    {
+        return app(Dispatcher::class)->dispatchAfterResponse(new static(...func_get_args()));
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**

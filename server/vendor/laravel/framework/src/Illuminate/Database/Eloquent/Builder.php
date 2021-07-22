@@ -824,7 +824,11 @@ class Builder
      * @param  int|null  $perPage
      * @param  array  $columns
      * @param  string  $cursorName
+<<<<<<< HEAD
      * @param  \Illuminate\Pagination\Cursor|string|null  $cursor
+=======
+     * @param  string|null  $cursor
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * @return \Illuminate\Contracts\Pagination\CursorPaginator
      */
     public function cursorPaginate($perPage = null, $columns = ['*'], $cursorName = 'cursor', $cursor = null)

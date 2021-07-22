@@ -9,14 +9,20 @@ use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+<<<<<<< HEAD
 use Illuminate\Support\Collection;
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
 use Illuminate\Testing\Assert as PHPUnit;
 use Illuminate\Testing\Constraints\SeeInOrder;
 use Illuminate\Testing\Fluent\AssertableJson;
+<<<<<<< HEAD
 use Illuminate\Validation\ValidationException;
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 use LogicException;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -37,6 +43,7 @@ class TestResponse implements ArrayAccess
     public $baseResponse;
 
     /**
+<<<<<<< HEAD
      * The collection of logged exceptions for the request.
      *
      * @var \Illuminate\Support\Collection
@@ -44,6 +51,8 @@ class TestResponse implements ArrayAccess
     protected $exceptions;
 
     /**
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * The streamed content of the response.
      *
      * @var string
@@ -59,7 +68,10 @@ class TestResponse implements ArrayAccess
     public function __construct($response)
     {
         $this->baseResponse = $response;
+<<<<<<< HEAD
         $this->exceptions = new Collection;
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -80,6 +92,7 @@ class TestResponse implements ArrayAccess
      */
     public function assertSuccessful()
     {
+<<<<<<< HEAD
         $lastException = $this->exceptions->last();
 
         $message = isset($lastException)
@@ -87,6 +100,12 @@ class TestResponse implements ArrayAccess
                     : 'Response status code ['.$this->getStatusCode().'] is not a successful status code.';
 
         PHPUnit::assertTrue($this->isSuccessful(), $message);
+=======
+        PHPUnit::assertTrue(
+            $this->isSuccessful(),
+            'Response status code ['.$this->getStatusCode().'] is not a successful status code.'
+        );
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 
         return $this;
     }
@@ -98,7 +117,16 @@ class TestResponse implements ArrayAccess
      */
     public function assertOk()
     {
+<<<<<<< HEAD
         return $this->assertStatus(200);
+=======
+        PHPUnit::assertTrue(
+            $this->isOk(),
+            'Response status code ['.$this->getStatusCode().'] does not match expected 200 status code.'
+        );
+
+        return $this;
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -108,7 +136,18 @@ class TestResponse implements ArrayAccess
      */
     public function assertCreated()
     {
+<<<<<<< HEAD
         return $this->assertStatus(201);
+=======
+        $actual = $this->getStatusCode();
+
+        PHPUnit::assertSame(
+            201, $actual,
+            "Response status code [{$actual}] does not match expected 201 status code."
+        );
+
+        return $this;
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -133,7 +172,16 @@ class TestResponse implements ArrayAccess
      */
     public function assertNotFound()
     {
+<<<<<<< HEAD
         return $this->assertStatus(404);
+=======
+        PHPUnit::assertTrue(
+            $this->isNotFound(),
+            'Response status code ['.$this->getStatusCode().'] is not a not found status code.'
+        );
+
+        return $this;
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -143,7 +191,16 @@ class TestResponse implements ArrayAccess
      */
     public function assertForbidden()
     {
+<<<<<<< HEAD
         return $this->assertStatus(403);
+=======
+        PHPUnit::assertTrue(
+            $this->isForbidden(),
+            'Response status code ['.$this->getStatusCode().'] is not a forbidden status code.'
+        );
+
+        return $this;
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -153,7 +210,18 @@ class TestResponse implements ArrayAccess
      */
     public function assertUnauthorized()
     {
+<<<<<<< HEAD
         return $this->assertStatus(401);
+=======
+        $actual = $this->getStatusCode();
+
+        PHPUnit::assertSame(
+            401, $actual,
+            "Response status code [{$actual}] is not an unauthorized status code."
+        );
+
+        return $this;
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**
@@ -166,6 +234,7 @@ class TestResponse implements ArrayAccess
     {
         $actual = $this->getStatusCode();
 
+<<<<<<< HEAD
         $lastException = $actual !== $status && in_array($actual, [422, 500])
                     ? $this->exceptions->last()
                     : null;
@@ -175,11 +244,18 @@ class TestResponse implements ArrayAccess
                     : "Expected status code [{$status}] but received {$actual}.";
 
         PHPUnit::assertSame($actual, $status, $message);
+=======
+        PHPUnit::assertSame(
+            $actual, $status,
+            "Expected status code {$status} but received {$actual}."
+        );
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 
         return $this;
     }
 
     /**
+<<<<<<< HEAD
      * Get an assertion message for a status assertion that has an unexpected exception.
      *
      * @param  string|int  $expected
@@ -228,6 +304,8 @@ EOF;
     }
 
     /**
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * Assert whether the response is redirecting to a given URI.
      *
      * @param  string|null  $uri
@@ -1246,6 +1324,7 @@ EOF;
     }
 
     /**
+<<<<<<< HEAD
      * Set the previous exceptions on the response.
      *
      * @param  \Illuminate\Support\Collection  $exceptions
@@ -1259,6 +1338,8 @@ EOF;
     }
 
     /**
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * Dynamically access base response parameters.
      *
      * @param  string  $key

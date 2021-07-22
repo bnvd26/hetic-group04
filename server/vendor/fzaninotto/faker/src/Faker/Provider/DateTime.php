@@ -202,7 +202,11 @@ class DateTime extends Base
      */
     public static function dateTimeThisYear($max = 'now', $timezone = null)
     {
+<<<<<<< HEAD
         return static::dateTimeBetween('first day of january this year', $max, $timezone);
+=======
+        return static::dateTimeBetween('-1 year', $max, $timezone);
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
     }
 
     /**

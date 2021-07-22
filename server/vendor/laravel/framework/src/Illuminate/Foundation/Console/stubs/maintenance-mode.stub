@@ -13,6 +13,7 @@ if (! isset($data['template'])) {
     return;
 }
 
+<<<<<<< HEAD
 // Allow framework to handle request if request URI is in the exclude list...
 if (isset($data['except'])) {
     $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
@@ -36,6 +37,8 @@ if (isset($data['except'])) {
     }
 }
 
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 // Allow framework to handle maintenance mode bypass route...
 if (isset($data['secret']) && $_SERVER['REQUEST_URI'] === '/'.$data['secret']) {
     return;

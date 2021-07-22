@@ -10,7 +10,10 @@ use InvalidArgumentException;
 class BladeCompiler extends Compiler implements CompilerInterface
 {
     use Concerns\CompilesAuthorizations,
+<<<<<<< HEAD
         Concerns\CompilesClasses,
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
         Concerns\CompilesComments,
         Concerns\CompilesComponents,
         Concerns\CompilesConditionals,

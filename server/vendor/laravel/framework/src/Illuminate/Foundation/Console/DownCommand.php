@@ -2,11 +2,17 @@
 
 namespace Illuminate\Foundation\Console;
 
+<<<<<<< HEAD
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Exceptions\RegisterErrorViewPaths;
 use Throwable;
+=======
+use Exception;
+use Illuminate\Console\Command;
+use Illuminate\Foundation\Exceptions\RegisterErrorViewPaths;
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
 
 class DownCommand extends Command
 {
@@ -71,7 +77,10 @@ class DownCommand extends Command
     protected function getDownFilePayload()
     {
         return [
+<<<<<<< HEAD
             'except' => $this->excludedPaths(),
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
             'redirect' => $this->redirectPath(),
             'retry' => $this->getRetryTime(),
             'refresh' => $this->option('refresh'),
@@ -82,6 +91,7 @@ class DownCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
      * Get the paths that should be excluded from maintenance mode.
      *
      * @return array
@@ -96,6 +106,8 @@ class DownCommand extends Command
     }
 
     /**
+=======
+>>>>>>> 3838afb4629d7fb0bf8ee8c43ddc65312fda9c52
      * Get the path that users should be redirected to.
      *
      * @return string
