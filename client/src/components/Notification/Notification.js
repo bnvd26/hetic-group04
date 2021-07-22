@@ -40,7 +40,7 @@ const Notification = ({ label, severity }) => {
             className="text-lg"
           />
         </div>
-        <div className="text-xl font-normal w-full flex-initial">
+        <div className="text-xl mr-2 font-normal w-full flex-initial">
           <div className="py-2">
             <div className="text-sm font-base">{label}</div>
           </div>

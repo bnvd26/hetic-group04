@@ -15,3 +15,8 @@
 .w-min {
   width: 500px;
 }
+
+.gradient-main {
+  background: rgb(161, 98, 230);
+  background: linear-gradient(0deg, rgba(161, 98, 230, 1) 0%, rgba(78, 38, 230, 1) 100%);
+}

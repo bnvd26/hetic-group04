@@ -4,22 +4,20 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faClock, faUsers } from "@fortawesome/free-solid-svg-icons";
 import ProgressSpinner from "../components/ProgressSpinner/ProgressSpinner";
 import Notification from "../components/Notification/Notification";
+import Select from "../components/Select/Select";
 
 
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
+  const [allRooms, setAllRooms] = useState(null);
   const [loading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleString());
 
   const notifications = [
-    {
-      label: `Il y'a actuellement x élèves dans la salle ${id}`,
-      severity: null,
-    },
     {
       label: "La température de la salle est idéale !",
       severity: "success",
@@ -43,6 +41,13 @@ const RoomDetails = () => {
     setInterval(() => setCurrentDate(new Date().toLocaleString()), 1000);
   };
 
+  const redirectTo = (id) => {
+    history.push("/rooms/" + id);
+
+    // Meh
+    window.location.reload();
+  };
+
   const history = useHistory();
 
   useEffect(() => {
@@ -60,6 +65,14 @@ const RoomDetails = () => {
           toast.error("This class doesn't exist \n" + error.message);
           history.push("/rooms");
         });
+
+      axios({
+        method: "GET",
+        url: `http://127.0.0.1:8000/api/rooms/`,
+      }).then((res) => {
+        setAllRooms(res.data);
+        setIsLoading(false);
+      });
     }
 
     setTimer();
@@ -67,7 +80,7 @@ const RoomDetails = () => {
     return () => {
       setCurrentDate({}); // This worked for me
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -76,11 +89,11 @@ const RoomDetails = () => {
       ) : (
         <div className="flex justify-between px-6 py-8 h-screen fadeIn">
           <div className="flex flex-col w-min">
-            <div className="bg-gray-200 w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 mb-2 rounded-lg">
-              <h2 className="text-gray-700 text-2xl font-medium">
+            <div className="gradient-main shadow-lg w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 mb-2 rounded-lg">
+              <h2 className="text-white text-2xl font-medium text-center">
                 Salle: {room.name}
               </h2>
-              <span className="flex flex-row items-center my-2">
+              <span className="flex flex-row items-center justify-center my-2 text-white">
                 <FontAwesomeIcon icon={faClock} className="text-lg mr-2" />
                 <p>{currentDate}</p>
               </span>
@@ -92,15 +105,39 @@ const RoomDetails = () => {
                     "url(https://source.unsplash.com/256x256/?classroom)",
                 }}
               ></div>
+
+              <span className="flex flex-row items-center justify-center my-4 text-white text-xl">
+                <FontAwesomeIcon icon={faUsers} className="text-lg mr-2" />
+                <p>X élèves</p>
+              </span>
+
+              {allRooms !== null && (
+                <Select
+                  options={allRooms}
+                  currentId={id}
+                  onChange={(value) => redirectTo(value)}
+                />
+              )}
             </div>
 
-            <div className="bg-gray-200 w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 rounded-lg">
-              <h2 className="text-gray-700 text-2xl font-medium mb-4">
+            <div className="bg-white shadow-lg w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 rounded-lg text-black">
+              <h2 className="text-2xl font-medium mb-4">
+                <FontAwesomeIcon
+                  icon={faBell}
+                  className="text-lg mr-2"
+                  style={{
+                    color: "rgb(161, 98, 230)",
+                  }}
+                />
                 Notifications ({notifications.length})
               </h2>
 
               {notifications.map((notification, index) => (
-                <Notification label={notification.label} severity={notification.severity} key={index} />
+                <Notification
+                  label={notification.label}
+                  severity={notification.severity}
+                  key={index}
+                />
               ))}
             </div>
           </div>
