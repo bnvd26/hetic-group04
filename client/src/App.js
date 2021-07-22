@@ -6,12 +6,24 @@ import RoomDetails from "./pages/room_details";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { faDoorOpen, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+
+const routes = [
+  {
+    url: "/rooms",
+    icon: faDoorOpen,
+  },
+  {
+    url: "/students",
+    icon: faGraduationCap,
+  },
+];
 
 const App = () => {
   return (
     <div className="flex h-screen">
       <Router>
-        <Nav />
+        <Nav routes={routes} />
 
         <div className="flex-1 flex flex-col overflow-hidden mx-auto">
           <Switch>
