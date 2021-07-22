@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import ProgressSpinner from "../components/ProgressSpinner/ProgressSpinner";
+import Notification from "../components/Notification/Notification";
+
 
 const RoomDetails = () => {
   const { id } = useParams();
@@ -13,11 +15,37 @@ const RoomDetails = () => {
   const [loading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleString());
 
+  const notifications = [
+    {
+      label: `Il y'a actuellement x élèves dans la salle ${id}`,
+      severity: null,
+    },
+    {
+      label: "La température de la salle est idéale !",
+      severity: "success",
+    },
+    {
+      label:
+        "La température des salles est supérieure à celle recommandée, nous vous recommandons de réduire la température des chauffages",
+      severity: "warning",
+    },
+    {
+      label: "La lumière a été réduite automatiquement",
+      severity: "success",
+    },
+    {
+      label: "Consommation excessive de la lumière",
+      severity: "warning",
+    },
+  ];
+
+  const setTimer = () => {
+    setInterval(() => setCurrentDate(new Date().toLocaleString()), 1000);
+  };
+
   const history = useHistory();
 
   useEffect(() => {
-    setInterval(() => setCurrentDate(new Date().toLocaleString()), 1000);
-
     if (room === null) {
       axios({
         method: "GET",
@@ -33,7 +61,13 @@ const RoomDetails = () => {
           history.push("/rooms");
         });
     }
-  });
+
+    setTimer();
+
+    return () => {
+      setCurrentDate({}); // This worked for me
+    };
+  }, []);
 
   return (
     <div>
@@ -43,9 +77,9 @@ const RoomDetails = () => {
         <div className="flex justify-between px-6 py-8 h-screen fadeIn">
           <div className="flex flex-col w-min">
             <div className="bg-gray-200 w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 mb-2 rounded-lg">
-              <h1 className="text-gray-700 text-2xl font-medium">
+              <h2 className="text-gray-700 text-2xl font-medium">
                 Salle: {room.name}
-              </h1>
+              </h2>
               <span className="flex flex-row items-center my-2">
                 <FontAwesomeIcon icon={faClock} className="text-lg mr-2" />
                 <p>{currentDate}</p>
@@ -58,13 +92,16 @@ const RoomDetails = () => {
                     "url(https://source.unsplash.com/256x256/?classroom)",
                 }}
               ></div>
-
             </div>
 
             <div className="bg-gray-200 w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 rounded-lg">
-              <h1 className="text-gray-700 text-2xl font-medium">
-                Notifications
-              </h1>
+              <h2 className="text-gray-700 text-2xl font-medium mb-4">
+                Notifications ({notifications.length})
+              </h2>
+
+              {notifications.map((notification, index) => (
+                <Notification label={notification.label} severity={notification.severity} key={index} />
+              ))}
             </div>
           </div>
 
@@ -76,15 +113,15 @@ const RoomDetails = () => {
                 </h1>
 
                 <div className="flex items-center justify-between w-full h-full">
-                  <div class="max-w-sm h-full w-2/6 bg-white border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg mx-4">
+                  <div className="max-w-sm h-full w-2/6 bg-white border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg mx-4">
                     Lumière
                   </div>
 
-                  <div class="max-w-sm h-full w-2/6 bg-white border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg mx-4">
+                  <div className="max-w-sm h-full w-2/6 bg-white border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg mx-4">
                     Temperature
                   </div>
 
-                  <div class="max-w-sm h-full w-2/6 bg-white border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg mx-4">
+                  <div className="max-w-sm h-full w-2/6 bg-white border-2 border-gray-300 p-6 rounded-md tracking-wide shadow-lg mx-4">
                     Autre
                   </div>
                 </div>
