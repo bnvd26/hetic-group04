@@ -1,11 +1,13 @@
 @import "./helpers/reset";
 @import "./helpers/animations";
+@import "./helpers/primeng_override";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .Toastify__toast-body {
   white-space: pre-line;
+  font-family: "Poppins";
 }
 
 .h-calc {
@@ -27,8 +29,4 @@
 
 .card-shadow {
   box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.13);
-}
-
-.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
-  background: #6668F5 !important;
 }

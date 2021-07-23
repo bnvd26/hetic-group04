@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faClock, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Knob } from "primereact/knob";
 import { InputSwitch } from "primereact/inputswitch";
+import { Tooltip } from "primereact/tooltip";
 
 const RoomDetails = () => {
   const getRandomNumber = (min, max) => {
@@ -78,7 +79,7 @@ const RoomDetails = () => {
 
     // From Monday to Friday
     let classDays = [1, 2, 3, 4, 5];
-    
+
     // Check between 9am and 5pm
     return classDays.includes(getDay) && getHour >= 9 && getHour <= 17;
   };
@@ -133,9 +134,14 @@ const RoomDetails = () => {
               <span className="flex flex-row items-center justify-center my-2 text-white">
                 <FontAwesomeIcon icon={faClock} className="text-lg mr-2" />
                 <p>{currentDate}</p>
-                <div className={checkRoomState()
-                      ? "h-4 w-4 ml-2 rounded-full fill-current bg-green-500"
-                      : "h-4 w-4 ml-2 rounded-full fill-current bg-red-500"}
+                <Tooltip target=".status" mouseTrack mouseTrackLeft={10} />
+                <div
+                  className={
+                    checkRoomState()
+                      ? "status h-4 w-4 ml-2 rounded-full fill-current bg-green-500"
+                      : "status h-4 w-4 ml-2 rounded-full fill-current bg-red-500"
+                  }
+                  data-pr-tooltip={checkRoomState() ? "Un professeur donne cours dans cette salle" : "Il n'y a pas cours dans cette salle"}
                 ></div>
               </span>
 
@@ -195,7 +201,7 @@ const RoomDetails = () => {
                       <DataCircle unit="élèves" value={`${studentValue}/50`} />
                       <DataCircle
                         unit="place libre"
-                        value={`${100 - (100 * studentValue) / 50}%`}
+                        value={50 - studentValue}
                       />
                     </div>
                   </div>

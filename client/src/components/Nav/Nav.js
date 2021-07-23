@@ -12,7 +12,9 @@ const Nav = ({routes}) => {
             activeClassName="text-indigo-500"
             to="/"
           >
-            IOT G4
+            <div className="h-16 w-16 flex items-center justify-center rounded-full fill-current gradient-main">
+              <p className="text-white font-bold">G4</p>
+            </div>
           </NavLink>
         </div>
       </div>
