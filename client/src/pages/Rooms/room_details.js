@@ -78,7 +78,7 @@ const RoomDetails = () => {
 
     // From Monday to Friday
     let classDays = [1, 2, 3, 4, 5];
-
+    
     // Check between 9am and 5pm
     return classDays.includes(getDay) && getHour >= 9 && getHour <= 17;
   };
@@ -133,12 +133,9 @@ const RoomDetails = () => {
               <span className="flex flex-row items-center justify-center my-2 text-white">
                 <FontAwesomeIcon icon={faClock} className="text-lg mr-2" />
                 <p>{currentDate}</p>
-                <div
-                  className={
-                    checkRoomState
+                <div className={checkRoomState()
                       ? "h-4 w-4 ml-2 rounded-full fill-current bg-green-500"
-                      : "h-4 w-4 ml-2 rounded-full fill-current bg-red-500"
-                  }
+                      : "h-4 w-4 ml-2 rounded-full fill-current bg-red-500"}
                 ></div>
               </span>
 
