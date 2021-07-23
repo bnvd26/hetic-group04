@@ -1,12 +1,15 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/home";
-import Rooms from "./pages/rooms";
+import Rooms from "./pages/Rooms/rooms";
 import Nav from "./components/Nav/Nav";
-import RoomDetails from "./pages/room_details";
+import RoomDetails from "./pages/Rooms/room_details";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { faDoorOpen, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.css";
 
 const routes = [
   {
@@ -21,7 +24,7 @@ const routes = [
 
 const App = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen font-body">
       <Router>
         <Nav routes={routes} />
 

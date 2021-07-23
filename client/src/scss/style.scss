@@ -20,3 +20,15 @@
   background: rgb(161, 98, 230);
   background: linear-gradient(0deg, rgba(161, 98, 230, 1) 0%, rgba(78, 38, 230, 1) 100%);
 }
+
+.shadow {
+  box-shadow: 0px 4px 35px rgba(138, 81, 230, 0.4);
+}
+
+.card-shadow {
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.13);
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: #6668F5 !important;
+}
