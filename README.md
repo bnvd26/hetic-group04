@@ -9,5 +9,5 @@ Recupèrer le fichier ``.env.example`` le dupliquer et le renommer :
   ``php artisan key:generate``
   ``php artisan migrate``
  
-
+Puis lancer le serveur : ``php artisan serve``
 
