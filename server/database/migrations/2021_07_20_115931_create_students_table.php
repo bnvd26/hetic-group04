@@ -26,7 +26,10 @@ class CreateStudentsTable extends Migration
         $faker = Factory::create();
 
         for ($i=0; $i < 50; $i++) {
-            Student::create(['first_name' => $faker->name, 'last_name' => $faker->name, 'promotion' => 'P' . $faker->numberBetween(2020, 2025)]);
+            Student::create([
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
+                'promotion' => 'P' . $faker->numberBetween(2020, 2025)]);
         }
     }
 
