@@ -28,10 +28,10 @@ class CreateRoomsTable extends Migration
 
         for ($i=0; $i < 50; $i++) {
             Room::create([
-                'name' => 'C' . $faker->numberBetween(30, 60),
+                'name' => 'Salle' . $faker->numberBetween(1, 10),
                 'picture_path' => 'picture_path',
-                'capacity' => $faker->numberBetween(30, 60),
-                'total_present_students' => $faker->numberBetween(30, 60)]);
+                'capacity' => $faker->numberBetween(50, 60),
+                'total_present_students' => $faker->numberBetween(30, 49)]);
         }
     }
 
