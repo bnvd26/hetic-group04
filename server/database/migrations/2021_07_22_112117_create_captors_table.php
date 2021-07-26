@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CaptorTable extends Migration
+class CreateCaptorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CaptorTable extends Migration
      */
     public function up()
     {
-        Schema::create('captor', function (Blueprint $table) {
-            $table->integer('room_id')->references('id')->on('rooms')->onDelete('cascade');;
+        Schema::create('captors', function (Blueprint $table) {
+            $table->id('room_id')->references('id')->on('rooms')->onDelete('cascade');;
             $table->integer('value');
             $table->string('tx_time_ms_epoch');
-            $table->string('type_of_captor');
+            $table->string('type');
         });
     }
 
@@ -28,6 +28,6 @@ class CaptorTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('captor');
     }
 }

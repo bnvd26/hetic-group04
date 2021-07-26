@@ -17,7 +17,7 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->date('day');
             $table->integer('room_id');
-            $table->integer('nbr_student');
+            $table->integer('total_students');
         });
     }
 
