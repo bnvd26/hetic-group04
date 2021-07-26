@@ -20,3 +20,5 @@ Route::get('students', [StudentController::class, 'index'])->name('students.inde
 Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show');
 Route::get('rooms', [RoomController::class, 'index'])->name('rooms.index');
 Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
+Route::get('schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+Route::get('schedule/{schedule}', [ScheduleController::class, 'show'])->name('schedule.show');

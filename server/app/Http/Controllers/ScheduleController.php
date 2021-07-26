@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedule;
 
-class SheduleController extends Controller
+class ScheduleController extends Controller
 {
     public function index()
     {
