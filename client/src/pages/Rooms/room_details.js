@@ -106,6 +106,7 @@ const RoomDetails = () => {
               severity: "error",
             });
           }
+          document.title = `Salle: ${res.data.name}`;
           setIsLoading(false);
         })
         .catch((error) => {
@@ -126,7 +127,7 @@ const RoomDetails = () => {
     setTimer();
 
     return () => {
-      setCurrentDate({}); // This worked for me
+      setCurrentDate({});
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -237,8 +238,15 @@ const RoomDetails = () => {
                         value={`${studentAverageValue}/${room.capacity}`}
                       />
                       <DataCircle
+                        unit="place libre"
+                        value={`${room.capacity - studentAverageValue}`}
+                      />
+                      <DataCircle
                         unit="Occupation"
-                        value={`${(100 * studentAverageValue) / 50}%`}
+                        value={`${(
+                          (100 * studentAverageValue) /
+                          room.capacity
+                        ).toFixed(0)}%`}
                       />
                     </div>
                   </div>
