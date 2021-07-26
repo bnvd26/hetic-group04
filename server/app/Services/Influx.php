@@ -6,6 +6,7 @@ use InfluxDB2\Model\WritePrecision;
 use InfluxDB2\Point;
 use App\Models\Captor;
 use App\Models\Room;
+use Illuminate\Support\Facades\DB;
 
 
 class Influx
@@ -48,20 +49,38 @@ class Influx
                 $captor = trim($captor, "_data_valu");
                 $captor = trim($captor, "_tx_time_ms_epoch");
                 $captor = "c" . $captor;
-                dump($captor);
                 
                 if($room != "Salle0") {
-                    $equivalentRoom = Room::where("name", $room)->first();
-                    $captor = Captor::create([
-                        "room_id" => $equivalentRoom->id,
-                        "value" => $value,
-                        "tx_time_ms_epoch" => $time,
-                        "type" => $captor,
-                    ]);
+
+                    $tableCaptors = DB::table('captors')->get();
+
+                    foreach ($tableCaptors as $tableCaptor) {
+                        if($tableCaptor->tx_time_ms_epoch != $time)
+                        {
+                            $equivalentRoom = Room::where("name", $room)->first();
+                            $dataCaptor = Captor::create([
+                                "room_id" => $equivalentRoom->id,
+                                "value" => $value,
+                                "tx_time_ms_epoch" => $time,
+                                "type" => $captor,
+                            ]);
+                            if($captor == "captIN")
+                            {
+                                $equivalentRoom->update([
+                                    "total_present_students" => (int)$equivalentRoom->total_present_students +1,
+                                ]);
+                            }
+                            if($captor == "captOUT")
+                            {
+                                $equivalentRoom->update([
+                                    "total_present_students" => (int)$equivalentRoom->total_present_students +1,
+                                ]);
+                            }
+                        }
+                    } 
                 }
             }
         }
-        
         return;
     }  
 }
