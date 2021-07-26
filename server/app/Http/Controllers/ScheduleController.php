@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Influx;
 use App\Models\Schedule;
 
-class SheduleController extends Controller
+class ScheduleController extends Controller
 {
     public function index()
     {
-        $shedules = Schedule::all();
+        // $shedules = Schedule::all();
 
-        return $shedules;
+        $test = new Influx;
+
+        $test->index();
+
+
+        // return $shedules;
     }
 
-    public function show(Schedule $room)
+    public function show(Schedule $schedule)
     {
-        return $room;
+        return $schedule;
     }
 }

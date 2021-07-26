@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Room extends Model
+class Captor extends Model
 {
     /**
      * The attributes that should be hidden for arrays.
@@ -26,25 +26,4 @@ class Room extends Model
      * @var array
      */
     protected $guarded = [];
-
-    protected $appends = ['captorsArr'];
-
-    /**
-     * RELATIONS
-     */
-
-     /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function captors()
-    {
-        return $this->hasMany(Captor::class);
-    }
-
-    public function getCaptorsArrAttribute()
-    {
-        return $this->captors;
-    }
 }
