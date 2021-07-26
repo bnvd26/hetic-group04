@@ -14,6 +14,7 @@ class CreateCaptorsTable extends Migration
     public function up()
     {
         Schema::create('captors', function (Blueprint $table) {
+            $table->id();
             $table->id('room_id')->references('id')->on('rooms')->onDelete('cascade');;
             $table->integer('value');
             $table->string('tx_time_ms_epoch');
