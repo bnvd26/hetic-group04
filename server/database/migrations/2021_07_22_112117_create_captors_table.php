@@ -30,6 +30,6 @@ class CreateCaptorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('captor');
+        Schema::dropIfExists('captors');
     }
 }
