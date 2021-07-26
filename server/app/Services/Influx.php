@@ -5,6 +5,7 @@ use InfluxDB2\Client;
 use InfluxDB2\Model\WritePrecision;
 use InfluxDB2\Point;
 use App\Models\Captor;
+use App\Models\Room;
 
 
 class Influx
@@ -35,21 +36,29 @@ class Influx
         foreach ($results as $result) {
             //dump($result)
             foreach($result->records as $data){
-                 dump($data);
-                $rooms =   $data->values["topic"];
-                $captors =  $data->values["_field"];
-                $values =  $data->values["_value"];
+                // dump($data);
+                $room =   $data->values["topic"];
+                $captor =  $data->values["_field"];
+                $value =  $data->values["_value"];
                 $time = $data->values["_time"];
 
-
-                /*
-                $captor = Captor::create([
-                    "room_id" => /
-                    "value" =>
-                    "tx_time_ms_epoch" =>
-                    "type" =>
-                ]);
-                */
+                $room = trim($room, "WEB3-GROUPE4/");
+                
+                $captor = trim($captor, "sensor_id");
+                $captor = trim($captor, "_data_valu");
+                $captor = trim($captor, "_tx_time_ms_epoch");
+                $captor = "c" . $captor;
+                dump($captor);
+                
+                if($room != "Salle0") {
+                    $equivalentRoom = Room::where("name", $room)->first();
+                    $captor = Captor::create([
+                        "room_id" => $equivalentRoom->id,
+                        "value" => $value,
+                        "tx_time_ms_epoch" => $time,
+                        "type" => $captor,
+                    ]);
+                }
             }
         }
         
