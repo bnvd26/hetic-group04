@@ -13,8 +13,8 @@ class ScheduleController extends Controller
         return $shedules;
     }
 
-    public function show(Schedule $room)
+    public function show(Schedule $schedule)
     {
-        return $room;
+        return $schedule;
     }
 }
