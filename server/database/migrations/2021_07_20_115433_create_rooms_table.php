@@ -26,9 +26,11 @@ class CreateRoomsTable extends Migration
 
         $faker = Factory::create();
 
-        for ($i=0; $i < 50; $i++) {
+        $rooms = ['Salle01', 'Salle02', 'Salle03', 'Salle04', 'Salle05', 'Salle06', 'Salle07', 'Salle08', 'Salle09', 'Salle10'];
+
+        for ($i=0; $i < count($rooms); $i++) {
             Room::create([
-                'name' => 'Salle' . $faker->numberBetween(1, 10),
+                'name' => $rooms[$i],
                 'picture_path' => 'picture_path',
                 'capacity' => $faker->numberBetween(50, 60),
                 'total_present_students' => $faker->numberBetween(30, 49)]);
