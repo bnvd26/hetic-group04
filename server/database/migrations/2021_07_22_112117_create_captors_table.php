@@ -19,6 +19,7 @@ class CreateCaptorsTable extends Migration
             $table->integer('value');
             $table->string('tx_time_ms_epoch');
             $table->string('type');
+            $table->timestamps();
         });
     }
 
