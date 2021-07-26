@@ -74,14 +74,16 @@ const RoomDetails = () => {
 
   const checkRoomState = () => {
     let currentDate = new Date();
-    let getHour = currentDate.getHours();
-    let getDay = currentDate.getDay();
 
     // From Monday to Friday
     let classDays = [1, 2, 3, 4, 5];
 
     // Check between 9am and 5pm
-    return classDays.includes(getDay) && getHour >= 9 && getHour <= 17;
+    return (
+      classDays.includes(currentDate.getDay()) &&
+      currentDate.getHours() >= 9 &&
+      currentDate.getHours() <= 17
+    );
   };
 
   const history = useHistory();
@@ -141,7 +143,11 @@ const RoomDetails = () => {
                       ? "status h-4 w-4 ml-2 rounded-full fill-current bg-green-500"
                       : "status h-4 w-4 ml-2 rounded-full fill-current bg-red-500"
                   }
-                  data-pr-tooltip={checkRoomState() ? "Un professeur donne cours dans cette salle" : "Il n'y a pas cours dans cette salle"}
+                  data-pr-tooltip={
+                    checkRoomState()
+                      ? "Un professeur donne cours dans cette salle"
+                      : "Il n'y a pas cours dans cette salle"
+                  }
                 ></div>
               </span>
 
@@ -232,7 +238,7 @@ const RoomDetails = () => {
                 <h1 className="text-gray-700 text-3xl font-medium mb-4">
                   Gestion
                 </h1>
-                <div className="w-full h-full flex justify-between">
+                <div className="w-full h-full flex justify-between items-center">
                   <div className="mr-12 w-64 flex items-center flex-col">
                     <h1 className="text-gray-700 text-2xl font-medium mb-6 text-center">
                       Température:
@@ -263,7 +269,7 @@ const RoomDetails = () => {
                     />
                   </div>
 
-                  <div className="mr-12 flex">
+                  <div className="mr-12 flex items-center">
                     <div>
                       <div className="flex items-center justify-between mb-4 w-64">
                         <h1 className="text-gray-700 text-2xl font-medium mr-4">
