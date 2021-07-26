@@ -26,4 +26,25 @@ class Room extends Model
      * @var array
      */
     protected $guarded = [];
+
+    protected $appends = ['captorsArr'];
+
+    /**
+     * RELATIONS
+     */
+
+     /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function captors()
+    {
+        return $this->hasMany(Captor::class);
+    }
+
+    public function getCaptorsArrAttribute()
+    {
+        return $this->captors;
+    }
 }
