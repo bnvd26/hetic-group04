@@ -23,19 +23,7 @@ const RoomDetails = () => {
     return Math.random() >= 0.5;
   };
 
-  const { id } = useParams();
-  const [room, setRoom] = useState(null);
-  const [allRooms, setAllRooms] = useState(null);
-  const [studentValue] = useState(getRandomNumber(0, 50));
-  const [studentAverageValue] = useState(getRandomNumber(0, 50))
-  const [tempValue, setTempValue] = useState(getRandomNumber(18, 26));
-  const [lightValue, setLightValue] = useState(getRandomNumber(200, 400));
-  const [projectorValue, setProjectorValue] = useState(getRandomBoolean());
-  const [fanValue, setFanValue] = useState(getRandomBoolean());
-  const [loading, setIsLoading] = useState(true);
-  const [currentDate, setCurrentDate] = useState(new Date().toLocaleString());
-
-  const notifications = [
+  const notificationsExample = [
     {
       label: "La température de la salle est idéale",
       severity: "success",
@@ -54,6 +42,19 @@ const RoomDetails = () => {
       severity: "warning",
     },
   ];
+
+  const { id } = useParams();
+  const [room, setRoom] = useState(null);
+  const [allRooms, setAllRooms] = useState(null);
+  const [studentValue] = useState(getRandomNumber(0, 50));
+  const [studentAverageValue, setAverageStudent] = useState(null);
+  const [tempValue, setTempValue] = useState(getRandomNumber(18, 26));
+  const [lightValue, setLightValue] = useState(getRandomNumber(200, 400));
+  const [projectorValue, setProjectorValue] = useState(getRandomBoolean());
+  const [notifications] = useState(notificationsExample);
+  const [fanValue, setFanValue] = useState(getRandomBoolean());
+  const [loading, setIsLoading] = useState(true);
+  const [currentDate, setCurrentDate] = useState(new Date().toLocaleString());
 
   const setTimer = () => {
     // Display clock
@@ -97,8 +98,15 @@ const RoomDetails = () => {
       })
         .then((res) => {
           setRoom(res.data);
+          setAverageStudent(getRandomNumber(0, res.data.capacity));
+
+          if (res.data.total_present_students > res.data.capacity) {
+            notifications.unshift({
+              label: "La capacité maximale de la salle a été atteinte !",
+              severity: "error",
+            });
+          }
           setIsLoading(false);
-          console.log(res.data);
         })
         .catch((error) => {
           toast.error("This class doesn't exist \n" + error.message);
@@ -204,10 +212,15 @@ const RoomDetails = () => {
                     <div className="flex justify-start w-full">
                       <DataCircle unit="°C" value={tempValue} />
                       <DataCircle unit="lx" value={lightValue} />
-                      <DataCircle unit="élèves" value={`${studentValue}/50`} />
+                      <DataCircle
+                        unit="élèves"
+                        value={`${room.total_present_students}/${room.capacity}`}
+                        type="capacity"
+                      />
                       <DataCircle
                         unit="place libre"
-                        value={50 - studentValue}
+                        value={room.capacity - room.total_present_students}
+                        type="capacity"
                       />
                     </div>
                   </div>
@@ -221,7 +234,7 @@ const RoomDetails = () => {
                       <DataCircle unit="lx" value="250" />
                       <DataCircle
                         unit="élèves"
-                        value={studentAverageValue + "/50"}
+                        value={`${studentAverageValue}/${room.capacity}`}
                       />
                       <DataCircle
                         unit="Occupation"
