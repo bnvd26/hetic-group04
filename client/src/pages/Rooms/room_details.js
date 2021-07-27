@@ -19,10 +19,6 @@ const RoomDetails = () => {
     return Math.trunc(Math.random() * (max - min) + min);
   };
 
-  const getRandomBoolean = () => {
-    return Math.random() >= 0.5;
-  };
-
   const notificationsExample = [
     {
       label: "La température de la salle est idéale",
@@ -33,37 +29,46 @@ const RoomDetails = () => {
         "La température des salles est supérieure à celle recommandée, nous vous recommandons de réduire la température des chauffages",
       severity: "warning",
     },
-    {
-      label: "La lumière a été réduite automatiquement",
-      severity: "success",
-    },
-    {
-      label: "Consommation excessive de la lumière",
-      severity: "warning",
-    },
+    // {
+    //   label: "La lumière a été réduite automatiquement",
+    //   severity: "success",
+    // },
+    // {
+    //   label: "Consommation excessive de la lumière",
+    //   severity: "warning",
+    // },
   ];
 
   const { id } = useParams();
   const [room, setRoom] = useState(null);
   const [allRooms, setAllRooms] = useState(null);
-  const [studentValue] = useState(getRandomNumber(0, 50));
   const [studentAverageValue, setAverageStudent] = useState(null);
-  const [tempValue, setTempValue] = useState(getRandomNumber(18, 26));
-  const [lightValue, setLightValue] = useState(getRandomNumber(200, 400));
-  const [projectorValue, setProjectorValue] = useState(getRandomBoolean());
   const [notifications] = useState(notificationsExample);
-  const [fanValue, setFanValue] = useState(getRandomBoolean());
   const [loading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleString());
+
+  // To change
+  const [tempValue, setTempValue] = useState(getRandomNumber(18, 26));
+  const [lightValue, setLightValue] = useState(getRandomNumber(200, 400));
+  const [projectorValue, setProjectorValue] = useState(null);
+  const [fanValue, setFanValue] = useState(null);
 
   const setTimer = () => {
     // Display clock
     setInterval(() => setCurrentDate(new Date().toLocaleString()), 1000);
   };
 
-  const sucessMessage = () => {
-    toast.dismiss();
-    toast.success("Les modifications ont été appliquées");
+  const manageDevice = (type, value) => {
+    axios
+      .put(`http://127.0.0.1:8000/api/rooms/${id}/update`, {
+        type: type,
+        value: value,
+      })
+      .then(() => {
+        getRoomData();
+        toast.dismiss();
+        toast.success("Les modifications ont été appliquées");
+      });
   };
 
   const redirectTo = (id) => {
@@ -87,32 +92,54 @@ const RoomDetails = () => {
     );
   };
 
+  const sendNotification = () => {
+    if (checkRoomState() === false) {
+      notifications.push({
+        label:
+          "Il n'y a pas cours dans cette salle, nous vous recommandons de réduire/éteindre les différents éléments de cette salle",
+        severity: "info",
+      });
+    }
+  };
+
+  const getRoomData = () => {
+    axios({
+      method: "GET",
+      url: `http://127.0.0.1:8000/api/rooms/${id}`,
+    })
+      .then((res) => {
+        setRoom(res.data);
+        if (studentAverageValue === null) {
+          setAverageStudent(getRandomNumber(0, res.data.capacity));
+        }
+
+        if (res.data.total_present_students > res.data.capacity) {
+          notifications.unshift({
+            label: "La capacité maximale de la salle a été atteinte !",
+            severity: "error",
+          });
+        }
+        document.title = res.data.name;
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        toast.error("This class doesn't exist \n" + error.message);
+        history.push("/rooms");
+      });
+  };
+
   const history = useHistory();
 
   useEffect(() => {
     if (room === null) {
       // Get current room
-      axios({
-        method: "GET",
-        url: `http://127.0.0.1:8000/api/rooms/${id}`,
-      })
-        .then((res) => {
-          setRoom(res.data);
-          setAverageStudent(getRandomNumber(0, res.data.capacity));
+      getRoomData();
 
-          if (res.data.total_present_students > res.data.capacity) {
-            notifications.unshift({
-              label: "La capacité maximale de la salle a été atteinte !",
-              severity: "error",
-            });
-          }
-          document.title = res.data.name;
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          toast.error("This class doesn't exist \n" + error.message);
-          history.push("/rooms");
-        });
+      setInterval(() => {
+        toast.dismiss();
+        toast.info("🚀 Data has been updated");
+        getRoomData();
+      }, 15000);
 
       // Get all rooms to have a quickswitch
       axios({
@@ -125,6 +152,7 @@ const RoomDetails = () => {
     }
 
     setTimer();
+    sendNotification();
 
     return () => {
       setCurrentDate({});
@@ -188,13 +216,15 @@ const RoomDetails = () => {
                 Notifications ({notifications.length})
               </h2>
 
-              {notifications.map((notification, index) => (
-                <Notification
-                  label={notification.label}
-                  severity={notification.severity}
-                  key={index}
-                />
-              ))}
+              {notifications
+                .map((notification, index) => (
+                  <Notification
+                    label={notification.label}
+                    severity={notification.severity}
+                    key={index}
+                  />
+                ))
+                .reverse()}
             </div>
           </div>
 
@@ -297,10 +327,10 @@ const RoomDetails = () => {
                           Projecteur:
                         </h1>
                         <InputSwitch
-                          checked={projectorValue}
+                          checked={room.projector}
                           onChange={(e) => {
                             setProjectorValue(e.value);
-                            sucessMessage();
+                            manageDevice("projector", e.value);
                           }}
                         />
                       </div>
@@ -310,10 +340,10 @@ const RoomDetails = () => {
                           Climatisation:
                         </h1>
                         <InputSwitch
-                          checked={fanValue}
+                          checked={room.air_conditioner}
                           onChange={(e) => {
                             setFanValue(e.value);
-                            sucessMessage();
+                            manageDevice("air_conditioner", e.value);
                           }}
                         />
                       </div>
