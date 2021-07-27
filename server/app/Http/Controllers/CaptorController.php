@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Services\Influx;
+
 use App\Models\Captor;
 
 class CaptorController extends Controller
@@ -10,11 +10,9 @@ class CaptorController extends Controller
     public function index()
     {
         $captors = Captor::all();
+        $influx = new Influx;
 
-        $test = new Influx;
-
-        $test->index();
-
+        $influx->index();
         return $captors;
     }
 
