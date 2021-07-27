@@ -28,9 +28,9 @@ CAPTTEMP = "captTEMP"
 
 # Type de donnée renvoyée : Random 0 ou 1
 VALINMIN = 1
-VALINMAX = 5
+VALINMAX = 10
 VALOUTMIN = 1
-VALOUTMAX = 5
+VALOUTMAX = 3
 VALLUMMIN = 150
 VALLUMMAX = 700
 VALTEMPMIN = 20
@@ -38,7 +38,7 @@ VALTEMPMAX = 27
 
 
 def run(condition):
-    while datetime.now().minute not in {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 27, 32, 38, 42, 47, 52, 54, 59}:
+    while datetime.now().minute not in {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 27, 32, 38, 42, 47, 52, 54, 57, 59}:
         sleep(1)
 
     def task():

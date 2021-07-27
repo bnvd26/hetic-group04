@@ -32,8 +32,6 @@ class Influx
 
         $results = $this->queryApi->query('from(bucket:"mqtthetic") |> range(start: 1970-01-01T00:00:00.000000001Z) |> last()');
         
-        //$datas = json_decode($result) ;
-        
         foreach ($results as $result) {
             //dump($result)
             foreach($result->records as $data){
@@ -51,12 +49,14 @@ class Influx
                 $captor = "c" . $captor;
                 
                 if($room != "Salle0") {
-
+                /*
                     $tableCaptors = DB::table('captors')->get();
 
                     foreach ($tableCaptors as $tableCaptor) {
+                
                         if($tableCaptor->tx_time_ms_epoch != $time)
                         {
+                        */
                             $equivalentRoom = Room::where("name", $room)->first();
                             $dataCaptor = Captor::create([
                                 "room_id" => $equivalentRoom->id,
@@ -76,8 +76,10 @@ class Influx
                                     "total_present_students" => (int)$equivalentRoom->total_present_students +1,
                                 ]);
                             }
+                        /*
                         }
                     } 
+                    */
                 }
             }
         }

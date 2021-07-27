@@ -9,14 +9,14 @@ class ScheduleController extends Controller
 {
     public function index()
     {
-        // $shedules = Schedule::all();
+        $schedules = Schedule::all();
 
         $test = new Influx;
 
         $test->index();
 
 
-        // return $shedules;
+        return $schedules;
     }
 
     public function show(Schedule $schedule)
