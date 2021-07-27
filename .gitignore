@@ -1,4 +1,5 @@
 /client/node_modules
+/node_modules
 /server/vendor
 /server/.vagrant/*
 /public/hot
@@ -15,3 +16,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+.DS_Store

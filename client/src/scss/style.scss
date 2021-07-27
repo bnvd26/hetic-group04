@@ -1,4 +1,32 @@
 @import "./helpers/reset";
+@import "./helpers/animations";
+@import "./helpers/primeng_override";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Toastify__toast-body {
+  white-space: pre-line;
+  font-family: "Poppins";
+}
+
+.h-calc {
+  height: calc(100vh - 2.5rem);
+}
+
+.w-min {
+  width: 500px;
+}
+
+.gradient-main {
+  background: rgb(161, 98, 230);
+  background: linear-gradient(0deg, rgba(161, 98, 230, 1) 0%, rgba(78, 38, 230, 1) 100%);
+}
+
+.shadow {
+  box-shadow: 0px 4px 35px rgba(138, 81, 230, 0.4);
+}
+
+.card-shadow {
+  box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.13);
+}
