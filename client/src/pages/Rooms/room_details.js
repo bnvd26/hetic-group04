@@ -48,6 +48,9 @@ const RoomDetails = () => {
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleString());
 
   // To change
+  const [currentStudentValue, setCurrentStudentValue] = useState(
+    getRandomNumber(null)
+  );
   const [tempValue, setTempValue] = useState(getRandomNumber(18, 26));
   const [lightValue, setLightValue] = useState(getRandomNumber(200, 400));
   const [projectorValue, setProjectorValue] = useState(null);
@@ -111,10 +114,14 @@ const RoomDetails = () => {
         setRoom(res.data);
         if (studentAverageValue === null) {
           setAverageStudent(getRandomNumber(0, res.data.capacity));
+          setCurrentStudentValue(getRandomNumber(0, res.data.capacity));
         }
 
-        if (res.data.total_present_students > res.data.capacity) {
-          notifications.unshift({
+        if (
+          notifications.length < 3 &&
+          res.data.total_present_students > res.data.capacity
+        ) {
+          notifications.push({
             label: "La capacité maximale de la salle a été atteinte !",
             severity: "error",
           });
@@ -135,7 +142,7 @@ const RoomDetails = () => {
       // Get current room
       getRoomData();
 
-      setInterval(() => {
+      var interval = setInterval(() => {
         toast.dismiss();
         toast.info("🚀 Data has been updated");
         getRoomData();
@@ -156,6 +163,7 @@ const RoomDetails = () => {
 
     return () => {
       setCurrentDate({});
+      clearInterval(interval);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

@@ -8,8 +8,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { faDoorOpen, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
-import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/themes/saga-purple/theme.css";
 import "primereact/resources/primereact.css";
+import Students from "./pages/Students/students";
 
 const routes = [
   {
@@ -38,6 +39,15 @@ const App = () => {
                 <>
                   <Route path={`${url}/`} component={Rooms} exact />
                   <Route path={`${url}/:id`} component={RoomDetails} />
+                </>
+              )}
+            />
+
+            <Route
+              path="/students"
+              render={({ match: { url } }) => (
+                <>
+                  <Route path={`${url}/`} component={Students} exact />
                 </>
               )}
             />
