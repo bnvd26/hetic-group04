@@ -21,13 +21,13 @@ const RoomDetails = () => {
 
   const notificationsExample = [
     {
-      label: "La température de la salle est idéale",
-      severity: "success",
-    },
-    {
       label:
         "La température des salles est supérieure à celle recommandée, nous vous recommandons de réduire la température des chauffages",
       severity: "warning",
+    },
+    {
+      label: "La température de la salle est idéale",
+      severity: "success",
     },
     // {
     //   label: "La lumière a été réduite automatiquement",
@@ -47,14 +47,8 @@ const RoomDetails = () => {
   const [loading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date().toLocaleString());
 
-  // To change
-  const [currentStudentValue, setCurrentStudentValue] = useState(
-    getRandomNumber(null)
-  );
   const [tempValue, setTempValue] = useState(getRandomNumber(18, 26));
   const [lightValue, setLightValue] = useState(getRandomNumber(200, 400));
-  const [projectorValue, setProjectorValue] = useState(null);
-  const [fanValue, setFanValue] = useState(null);
 
   const setTimer = () => {
     // Display clock
@@ -114,11 +108,10 @@ const RoomDetails = () => {
         setRoom(res.data);
         if (studentAverageValue === null) {
           setAverageStudent(getRandomNumber(0, res.data.capacity));
-          setCurrentStudentValue(getRandomNumber(0, res.data.capacity));
         }
 
         if (
-          notifications.length < 3 &&
+          notifications.length !== 3 &&
           res.data.total_present_students > res.data.capacity
         ) {
           notifications.push({
@@ -266,7 +259,7 @@ const RoomDetails = () => {
 
                   <div className="flex flex-col items-start justify-start w-full border-2 border-gray-300 p-6 rounded-md tracking-wide">
                     <h1 className="text-gray-700 text-2xl font-medium mb-6">
-                      Moyenne
+                      Moyenne (matinée)
                     </h1>
                     <div className="flex justify-start w-full">
                       <DataCircle unit="°C" value="23" />
@@ -337,7 +330,6 @@ const RoomDetails = () => {
                         <InputSwitch
                           checked={room.projector}
                           onChange={(e) => {
-                            setProjectorValue(e.value);
                             manageDevice("projector", e.value);
                           }}
                         />
@@ -350,7 +342,6 @@ const RoomDetails = () => {
                         <InputSwitch
                           checked={room.air_conditioner}
                           onChange={(e) => {
-                            setFanValue(e.value);
                             manageDevice("air_conditioner", e.value);
                           }}
                         />
