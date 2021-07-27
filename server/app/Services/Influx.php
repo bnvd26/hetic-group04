@@ -47,7 +47,7 @@ class Influx
                 }
                 $time = $data->values["_time"];
 
-                $room = trim($room, "WEB3-GROUPE4/");
+                $room = substr($room,-7, 7);
                 $captor = trim($captor, "sensor_id");
                 $captor = trim($captor, "_data_value");
                 $captor = trim($captor, "_tx_time_ms_epoch");
@@ -75,12 +75,12 @@ class Influx
                     }
                     if ($captor == "captLUM") {
                         $equivalentRoom->update([
-                            "luminosite" => (int)$value,
+                            "luminosity" => (int)$value,
                         ]);
                     }
                     if ($captor == "captTEMP") {
                         $equivalentRoom->update([
-                            "temperature" => (int)$value,
+                            "degree" => (int)$value,
                         ]);
                     }
                 }
