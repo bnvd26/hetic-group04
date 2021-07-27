@@ -21,6 +21,6 @@ Route::get('students', [StudentController::class, 'index'])->name('students.inde
 Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show');
 Route::get('rooms', [RoomController::class, 'index'])->name('rooms.index');
 Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
-Route::update('rooms/{room}/update', [RoomController::class, 'update'])->name('rooms.update');
+Route::put('rooms/{room}/update', [RoomController::class, 'update'])->name('rooms.update');
 Route::get('captor', [CaptorController::class, 'index'])->name('captor.index');
 Route::get('captor/{captor}', [CaptorController::class, 'show'])->name('captor.show');
