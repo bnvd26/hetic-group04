@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-@import './helpers/reset';
-@import './components/students';
-@import './components/footer';
-@import './components/rgpd';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
 @import "./helpers/reset";
 @import "./helpers/animations";
 @import "./helpers/primeng_override";
+@import './components/students';
+@import './components/footer';
+@import './components/rgpd';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,4 +33,3 @@
 .card-shadow {
   box-shadow: 0px 4px 35px rgba(0, 0, 0, 0.13);
 }
->>>>>>> 378f8a96dcd3d1850bc6e237a4403acb5af9a7f9

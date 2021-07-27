@@ -1,6 +1,6 @@
 import React from "react";
 
-const Students = () => {
+const oldStudents = () => {
   return (
     <div className="wrapper wrapper--students">
       <div className="container">
@@ -757,4 +757,4 @@ const Students = () => {
   );
 };
 
-export default Students;
+export default oldStudents;
