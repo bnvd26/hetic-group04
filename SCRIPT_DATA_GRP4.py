@@ -27,7 +27,7 @@ CAPTTEMP = "captTEMP"
 
 
 # Type de donnée renvoyée : Random 0 ou 1
-VALINMIN = 1
+VALINMIN = 5
 VALINMAX = 10
 VALOUTMIN = 1
 VALOUTMAX = 3
