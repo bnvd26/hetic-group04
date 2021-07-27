@@ -1,0 +1,18 @@
+.footer {
+  position: absolute;
+  bottom: 10px;
+  right: 24px;
+
+  ul {
+    display: flex;
+
+    li:first-child {
+      margin-right: 15px;
+    }
+
+    li:last-child {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

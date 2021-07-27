@@ -1,4 +1,7 @@
-@import "./helpers/reset";
+@import './helpers/reset';
+@import './components/students';
+@import './components/footer';
+@import './components/rgpd';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
