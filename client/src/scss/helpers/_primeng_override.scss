@@ -1,0 +1,24 @@
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: #6668F5 !important;
+}
+
+.p-component {
+  font-family: "Poppins" !important;
+}
+
+.p-highlight,
+.p-sortable-column-icon {
+  color: #6668F5 !important;
+}
+
+.p-link {
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #6668F5 !important;
+  }
+}
+
+.p-sortable-column {
+  &:focus {
+    box-shadow: inset 0 0 0 0.15rem #6668F5 !important;
+  }
+}

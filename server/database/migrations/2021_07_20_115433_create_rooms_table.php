@@ -33,7 +33,7 @@ class CreateRoomsTable extends Migration
                 'name' => $rooms[$i],
                 'picture_path' => 'picture_path',
                 'capacity' => $faker->numberBetween(50, 60),
-                'total_present_students' => 0
+                'total_present_students' => $faker->numberBetween(0, 60)
             ]);
         }
     }
