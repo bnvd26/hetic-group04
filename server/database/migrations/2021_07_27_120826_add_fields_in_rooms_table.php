@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Room;
+use Faker\Factory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +21,17 @@ class AddFieldsInRoomsTable extends Migration
             $table->string('degree')->after('name')->nullable();
             $table->string('luminosity')->after('name')->nullable();
         });
+
+        $rooms = Room::all();
+
+        $faker = Factory::create();
+
+        foreach ($rooms as $room) {
+            $room->update([
+                'degree' => $faker->numberBetween(18, 26),
+                'luminosity' => $faker->numberBetween(200, 400),
+            ]);
+        }
     }
 
     /**
