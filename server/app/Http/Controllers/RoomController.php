@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use Illuminate\Http\Client\Request;
 
 class RoomController extends Controller
 {
@@ -15,6 +16,15 @@ class RoomController extends Controller
 
     public function show(Room $room)
     {
+        return $room;
+    }
+
+    public function update(Request $request, Room $room)
+    {
+        $room->update([
+            $request->type => $request->value
+        ]);
+
         return $room;
     }
 }
