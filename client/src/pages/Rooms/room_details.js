@@ -106,7 +106,7 @@ const RoomDetails = () => {
               severity: "error",
             });
           }
-          document.title = `Salle: ${res.data.name}`;
+          document.title = res.data.name;
           setIsLoading(false);
         })
         .catch((error) => {
@@ -140,7 +140,7 @@ const RoomDetails = () => {
           <div className="flex flex-col w-min">
             <div className="gradient-main shadow-lg w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 mb-2 rounded-lg">
               <h2 className="text-white text-2xl font-medium text-center">
-                Salle: {room.name}
+                {room.name}
               </h2>
               <span className="flex flex-row items-center justify-center my-2 text-white">
                 <FontAwesomeIcon icon={faClock} className="text-lg mr-2" />
@@ -170,7 +170,7 @@ const RoomDetails = () => {
 
               <span className="flex flex-row items-center justify-center my-4 text-white text-xl">
                 <FontAwesomeIcon icon={faUsers} className="text-lg mr-2" />
-                <p>{studentValue} élèves</p>
+                <p>{room.total_present_students} élèves</p>
               </span>
 
               {allRooms !== null && (
@@ -182,7 +182,7 @@ const RoomDetails = () => {
               )}
             </div>
 
-            <div className="bg-white shadow-lg w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 rounded-lg text-black">
+            <div className="bg-white shadow-lg w-full lg:max-w-sm flex flex-col h-3/6 px-6 pt-8 rounded-lg text-gray-700">
               <h2 className="text-2xl font-medium mb-4">
                 <FontAwesomeIcon icon={faBell} className="text-lg mr-2" />
                 Notifications ({notifications.length})

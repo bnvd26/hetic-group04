@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const Select = ({options, currentId, onChange}) => {
-  const [selectedOption] = useState(
-    options[currentId].name
+  const [selectedOption, setSelectedOption] = useState(
+    options[currentId - 1].id
   );
 
   return (
@@ -10,9 +10,12 @@ const Select = ({options, currentId, onChange}) => {
       {selectedOption !== null && (
         <div className="relative inline-block w-full text-gray-700">
           <select
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => {
+              setSelectedOption(e.target.value)
+              onChange(e.target.value);
+            }}
             className="w-full h-10 pl-3 pr-6 text-base border rounded-lg appearance-none focus:shadow-outline bg-white bg-opacity-50 text-white"
-            value={options[currentId].id - 1}
+            value={selectedOption}
           >
             {options.map((option) => (
               <option
